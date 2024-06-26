@@ -43,8 +43,12 @@ def quiz_function(fname):
     'a, b, c, or d': varies depending on the correct answer for each question.
     user_points: keeps track of the score.
     """
+    zero_width_space = '\u200b'
+    
     with open(fname, encoding="utf8") as file:  # opens the file
         content = file.readlines()  # reads the file line by line
+        content = [line.strip() for line in content] # removes the new line characters ('\n') from the questions and answers
+        content = [line.replace(zero_width_space, '') for line in content] # removes the zero width ('\u200b')space when opening the text file
 
     user_points = 0  # user score starts at 0
 
